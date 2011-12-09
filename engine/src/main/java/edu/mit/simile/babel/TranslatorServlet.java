@@ -27,6 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.apache.poi.util.IOUtils;
 import org.apache.velocity.VelocityContext;
 import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.runtime.RuntimeConstants;
@@ -103,7 +104,18 @@ public class TranslatorServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		
+
+        // added by Eric Meeks
+        String postParams = "&";
+        byte[] buff = new byte[4096];
+        int size = 0;
+        do {
+        	size = IOUtils.readFully(request.getInputStream(), buff);
+        	byte[] tmp = new byte[size];
+        	System.arraycopy(buff, 0, tmp, 0, size);
+        	postParams += new String(tmp);
+        } while (size == buff.length);
+        
         String[] params = StringUtils.splitPreserveAllTokens(request.getQueryString(), '&');
         StringWriter writer = new StringWriter();
 		try {

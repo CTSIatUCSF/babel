@@ -9,6 +9,7 @@
   <artifactId>babel-engine</artifactId>
   <name>SIMILE Babel Engine</name>
   <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
 
   <parent>
       <groupId>edu.mit.simile</groupId>
