@@ -1,3 +1,13 @@
 velocity.log*
 **/target/
 **/**/target/
+
+# By Eric
+**/**/.classpath
+**/**/.project
+**/**/.settings
+.settings
+.svn
+.project
+.classpath
+target

@@ -116,7 +116,7 @@ public class TranslatorServlet extends HttpServlet {
         	postParams += new String(tmp);
         } while (size == buff.length);
         
-        String[] params = StringUtils.splitPreserveAllTokens(request.getQueryString(), '&');
+        String[] params = StringUtils.splitPreserveAllTokens(request.getQueryString() + postParams, '&');
         StringWriter writer = new StringWriter();
 		try {
 			writeBufferedResponse(response, writer, internalService(request, response, params, writer));
