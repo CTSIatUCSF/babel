@@ -7,4 +7,4 @@ velocity.log*
 .svn
 .project
 .classpath
-target
+#target
