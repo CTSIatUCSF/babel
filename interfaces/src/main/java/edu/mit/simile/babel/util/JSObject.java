@@ -38,7 +38,7 @@ public class JSObject extends Properties {
                 String name = (String) e.nextElement();
                 Object value = jso.get(name);
                 
-                name = "\"" + StringEscapeUtils.escapeJavaScript(name) + "\" : ";
+                name = "\"" + escapeJavaScript(name) + "\" : ";
                 
                 writer.print(StringUtils.rightPad(name, fieldWidth));
                 writeObject(writer, value);
@@ -77,11 +77,16 @@ public class JSObject extends Properties {
         } else if (o instanceof JSObject) {
             writeJSObject(writer, (JSObject) o);
         } else if (o instanceof String) {
-        	writer.print("\"" + StringEscapeUtils.escapeJavaScript(o.toString()) + "\"");
+        	writer.print("\"" + escapeJavaScript(o.toString()) + "\"");
         } else if (o != null) {
-        	writer.print(StringEscapeUtils.escapeJavaScript(o.toString()));
+        	writer.print(escapeJavaScript(o.toString()));
         } else {
         	writer.print("null");
         }
+    }
+
+    static public String escapeJavaScript(String value) {
+    	// Eric Meeks. It seems that it is a bug to escape a single quote when the JavaScript is delimited by double quotes, so we un-escape the single quote!"
+    	return StringEscapeUtils.escapeJavaScript(value).replaceAll("\\\\'", "'");
     }
 }
