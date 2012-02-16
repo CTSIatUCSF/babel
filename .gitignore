@@ -7,4 +7,5 @@ velocity.log*
 .svn
 .project
 .classpath
+MANIFEST.MF
 #target
