@@ -105,18 +105,7 @@ public class TranslatorServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 
-        // added by Eric Meeks
-        String postParams = "&";
-        byte[] buff = new byte[4096];
-        int size = 0;
-        do {
-        	size = IOUtils.readFully(request.getInputStream(), buff);
-        	byte[] tmp = new byte[size];
-        	System.arraycopy(buff, 0, tmp, 0, size);
-        	postParams += new String(tmp);
-        } while (size == buff.length);
-        
-        String[] params = StringUtils.splitPreserveAllTokens(request.getQueryString() + postParams, '&');
+        String[] params = StringUtils.splitPreserveAllTokens(request.getQueryString(), '&');
         StringWriter writer = new StringWriter();
 		try {
 			writeBufferedResponse(response, writer, internalService(request, response, params, writer));
