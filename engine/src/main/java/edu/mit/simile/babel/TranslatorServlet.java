@@ -427,11 +427,11 @@ public class TranslatorServlet extends HttpServlet {
 					mimetype;
 	}
 	
-    static protected String generateNamespace(HttpServletRequest request) {
+    static public String generateNamespace(HttpServletRequest request) {
     	return makeIntoNamespace("http://" + request.getRemoteAddr() + "/");
     }
     
-    static protected String makeIntoNamespace(String s) {
+    static public String makeIntoNamespace(String s) {
     	if (s.endsWith("#")) {
     		return s;
     	} else if (s.endsWith("/")) {

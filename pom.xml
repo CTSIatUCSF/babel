@@ -55,6 +55,7 @@
     <module>interfaces</module>
     <module>engine</module>
     <module>converters</module>
+    <module>war</module>
   </modules>
   
   <issueManagement>
